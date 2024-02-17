@@ -10,8 +10,8 @@ def pullHeartRateData(pathToFile,datetimeOffset=None):
 	close(f)
 	hr = np.array([v['value']['bpm'] for v in data])
 	confidence = np.array([v['value']['confidence'] for v in data])
-	datetime = np.array( [datetime.datetime.strptime(v['dateTime'],'%m/%d/%y %H:%M:%S') for v in data])
+	dt = np.array( [datetime.datetime.strptime(v['dateTime'],'%m/%d/%y %H:%M:%S') for v in data])
 	if datetimeOffset is not None:
-		datetime = datetime - datetimeOffset
-	return hr, confidence, datetime
+		dt = dt - datetimeOffset
+	return hr, confidence, dt
 
